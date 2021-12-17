@@ -1,3 +1,4 @@
+const { randomID } = require('crypto');
 const fs = require('fs');
 
 class UsersRepository {
@@ -22,6 +23,8 @@ class UsersRepository {
   }
 
   async create(attrs) {
+      attrs.id = this.randomID();
+
       const records = await this.getAll();
       records.push(attrs);
 
@@ -30,6 +33,11 @@ class UsersRepository {
 
   async writeAll(records) {
     await fs.promises.writeFile(this.filename, JSON.stringify(records, null, 2));
+  }
+
+
+  randomID() {
+    return crypto.randomBytes(4).toString('hex');
   }
 }
 
