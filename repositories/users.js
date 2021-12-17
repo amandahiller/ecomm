@@ -1,4 +1,4 @@
-const { randomID } = require('crypto');
+const { randomId } = require('crypto');
 const fs = require('fs');
 
 class UsersRepository {
@@ -23,7 +23,7 @@ class UsersRepository {
   }
 
   async create(attrs) {
-      attrs.id = this.randomID();
+      attrs.id = this.randomId();
 
       const records = await this.getAll();
       records.push(attrs);
@@ -36,7 +36,7 @@ class UsersRepository {
   }
 
 
-  randomID() {
+  randomId() {
     return crypto.randomBytes(4).toString('hex');
   }
 }
