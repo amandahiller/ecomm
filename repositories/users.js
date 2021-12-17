@@ -1,4 +1,4 @@
-const { randomId } = require('crypto');
+const crypto = require('crypto');
 const fs = require('fs');
 
 class UsersRepository {
