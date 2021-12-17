@@ -49,9 +49,9 @@ class UsersRepository {
 const test = async () => {
     const repo = new UsersRepository('users.json');
 
-    const user = await repo.getOne('3fa6e93a');
+    const user = await repo.getOne('10480198409839');
 
-    console.log(users);
+    console.log(user);
 };
 
 test();
