@@ -7,8 +7,14 @@ class UsersRepository {
         }
 
       this.filename = filename;
-      fs.accessSync(this.filename);
+      try {
+        fs.accessSync(this.filename); 
+      } catch (err) {
+          fs.writeFileSync(this.filename, '[]');
+      }
     }
+
+    async checkForFile() {}
 }
 
-new UsersRepository();
+const repo = new UsersRepository('users.json');
