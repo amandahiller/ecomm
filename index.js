@@ -27,6 +27,10 @@ app.post('/', async (req, res) => {
       return res.send('Email in use');
     }
 
+    if (password !== passwordConfirmation) {
+      return res.send('Passwords much match');
+    }
+
     res.send('Account created!!!');
 });
 
