@@ -20,7 +20,15 @@ class UsersRepository {
         })
     );
   }
+
+  async create(attrs) {
+      const records = await this.getAll();
+      records.push(attrs);
+  }
 }
+
+
+
 
 const test = async () => {
     const repo = new UsersRepository('users.json');
