@@ -1,12 +1,7 @@
 [
   {
     "email": "test@test.com",
-    "password": "password",
-    "id": "3fa6e93a"
-  },
-  {
-    "email": "test@test.com",
-    "password": "password",
-    "id": "b556b1a7"
+    "id": "75bf64e4",
+    "password": "mypassword"
   }
 ]
