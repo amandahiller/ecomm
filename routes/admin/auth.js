@@ -28,9 +28,12 @@ router.post('/signup', [
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    
+
     if (!errors.isEmpty()) {
-      return res.send(signupTemplate({ req, errors }));
+      return res.send(signupTemplate({
+        req,
+        errors
+      }));
     }
 
     const {
