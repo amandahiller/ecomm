@@ -58,7 +58,15 @@ router.get('/signin', (req, res) => {
   res.send(signinTemplate());
 });
 
-router.post('/signin', async (req, res) => {
+router.post('/signin', [
+  check('email')
+  .trim()
+  .normalizeEmail()
+  .isEmail()
+  .withMessage('Must provide a valid email'),
+  check('password')
+  .trim()
+], async (req, res) => {
   const {
     email,
     password
