@@ -1,8 +1,19 @@
 const layout = require('../layout');
 
-module.exports = ({ req }) => {
-    return layout({
-      content: `
+const getError = (errors, prop) => {
+  try {
+    return errors.mapped()[prop].msg
+  } catch (err) {
+    return '';
+  }
+};
+
+module.exports = ({
+  req,
+  errors
+}) => {
+  return layout({
+    content: `
       <div>
           Your id is: ${req.session.userId}
           <form method="POST">
@@ -13,5 +24,5 @@ module.exports = ({ req }) => {
           </form>
         </div>
       `
-    });
+  });
 };
