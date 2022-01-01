@@ -5,7 +5,14 @@ const Repository = require('./repository');
 
 const scrypt = util.promisify(crypto.scrypt);
 
-class UsersRepository {
+class UsersRepository extends Repository {
+    async comparePasswords(saved, supplied) {
+        const [hashed, salt] = saved.split('.');
+        const hashedSuppliedBuf = await scrypt(supplied, salt, 64);
+
+        return hashed === hashedSuppliedBuf.toString('hex');
+    }
+    
     async create(attrs) {
         attrs.id = this.randomId();
 
@@ -21,13 +28,6 @@ class UsersRepository {
         await this.writeAll(records);
 
         return records;
-    }
-
-    async comparePasswords(saved, supplied) {
-        const [hashed, salt] = saved.split('.');
-        const hashedSuppliedBuf = await scrypt(supplied, salt, 64);
-
-        return hashed === hashedSuppliedBuf.toString('hex');
     }
 }
 
