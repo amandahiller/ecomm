@@ -11,6 +11,7 @@ const {
   requireEmailExists,
   requireValidPasswordForUser
 } = require('./validators');
+const { handle } = require('express/lib/application');
 
 const router = express.Router();
 
@@ -29,8 +30,7 @@ router.post('/signup', [
   async (req, res) => {
     const {
       email,
-      password,
-      passwordConfirmation
+      password
     } = req.body;
 
     const user = await usersRepo.create({
@@ -56,13 +56,8 @@ router.post('/signin', [
     requireEmailExists,
     requireValidPasswordForUser
   ],
+  handleErrors(signupTemplate),
   async (req, res) => {
-    const errors = validationResult(req);
-    
-    if (!errors.isEmpty()) {
-      return res.send(signinTemplate({ errors }));
-    }
-
     const { email } = req.body;
 
     const user = await usersRepo.getOneBy({
