@@ -1,7 +1,4 @@
 const express = require('express');
-const {
-    validationResult
-} = require('express-validator');
 const multer = require('multer');
 
 const { handleErrors } = require('./middlewares');
