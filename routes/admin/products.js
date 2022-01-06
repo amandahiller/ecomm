@@ -15,6 +15,13 @@ const upload = multer({
     storage: multer.memoryStorage()
 });
 
+let image;
+        if(!req.file) {
+            image = "";
+        } else {
+            image = req.file.buffer.toString("base64");
+        }
+
 router.get('/admin/products', async (req, res) => {
     const products = await productsRepo.getAll();
     res.send(productsIndexTemplate({ products }));
@@ -40,7 +47,7 @@ router.post('/admin/products/new',
             image
         });
 
-        res.send('submitted');
+        res.redirect('/admin/products');
     });
 
 module.exports = router;
