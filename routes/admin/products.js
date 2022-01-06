@@ -17,6 +17,7 @@ const upload = multer({
 
 router.get('/admin/products', async (req, res) => {
     const products = await productsRepo.getAll();
+    res.send(productsIndexTemplate({ products }));
 });
 
 router.get('/admin/products/new', (req, res) => {
