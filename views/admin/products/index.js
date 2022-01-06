@@ -5,12 +5,12 @@ module.exports = ({ products }) => {
         return `
           <div>${product.title}</div>
         `;
-    });
+    }).join('');
 
     return layout({
         content: `
            <h1 class="title">Products</h1>
-
+            ${renderedProducts}
         `
     });
 };
